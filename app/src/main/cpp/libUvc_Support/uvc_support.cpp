@@ -94,14 +94,21 @@ extern "C" JNIEXPORT jint JNICALL Java_humer_UvcCamera_StartIsoStreamActivityUvc
     LOGD("Setting Frame Callback");
 
     jobject frame_callback_obj = env->NewGlobalRef(jIFrameCallback);
-
+    
+    int pixel_format;
+    if (strcmp(camera_pointer->frameFormat, "MJPEG") == 0) pixel_format = PIXEL_FORMAT_MJPEG;
+    else if (strcmp(camera_pointer->frameFormat, "YUY2") == 0) pixel_format = PIXEL_FORMAT_NV21;
+    else if (strcmp(camera_pointer->frameFormat, "UYVY") == 0 ) pixel_format = PIXEL_FORMAT_NV21;
+    else if (strcmp(camera_pointer->frameFormat, "NV21") == 0) pixel_format = PIXEL_FORMAT_NV21;
+    else pixel_format = 0;
+/*CHNAGED BY COPILOT AFTER DITHER ING AOUT CODE THAT NEEDS CAHNGING DOESNT EXIT THEN ITS THESE CHANGES IN A DIFFERNFIEL THEN ITS HITS CANGE NAD ONE OTHER   THIS CODE GANDEG TO ABVOE CODE
     int pixel_format;
     if (strcmp(camera_pointer->frameFormat, "MJPEG") == 0) pixel_format = PIXEL_FORMAT_MJPEG;
     else if (strcmp(camera_pointer->frameFormat, "YUY2") == 0) pixel_format = PIXEL_FORMAT_YUY2;
     else if (strcmp(camera_pointer->frameFormat, "UYVY") == 0 ) pixel_format = PIXEL_FORMAT_UYUY;
     else if (strcmp(camera_pointer->frameFormat, "NV21") == 0) pixel_format = PIXEL_FORMAT_NV21;
     else pixel_format = 0;
-
+*/
     LOGD ("Pixel Format = %d", pixel_format);
 
     // PIXEL_FORMAT defined in UVCPreview.h   0 = raw (yuy2) | 1 = yuv (yuy2) | 2-3 = rgb | 5 = NV21 | 6 = MJPEG

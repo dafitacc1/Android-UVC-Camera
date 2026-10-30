@@ -322,6 +322,18 @@ void UVCPreview::callbackPixelFormatChanged() {
             LOGI("PIXEL_FORMAT_RAW:");
             callbackPixelBytes = sz * 2;
             break;
+
+	case PIXEL_FORMAT_YUY2:
+	    LOGI("PIXEL_FORMAT_YUY2:");
+	    mFrameCallbackFunc = uvc_yuyv2yuv420SP;
+	    callbackPixelBytes = (sz * 3) / 2;
+	    break;
+	case PIXEL_FORMAT_UYUY:
+	    LOGI("PIXEL_FORMAT_UYUY:");
+	    mFrameCallbackFunc = uvc_yuyv2yuv420SP;
+	    callbackPixelBytes = (sz * 3) / 2;
+	    break;
+/*CHNAGED BY COPILOT AFTER DITHER ING AOUT CODE THAT NEEDS CAHNGING DOESNT EXIT THEN ITS THESE CHANGES IN A DIFFERNFIEL THEN ITS HITS CANGE NAD ONE OTHER   THIS CODE GANDEG TO ABVOE CODE
         case PIXEL_FORMAT_YUY2:
             LOGI("PIXEL_FORMAT_YUY2:");
             callbackPixelBytes = sz * 2;
@@ -330,6 +342,7 @@ void UVCPreview::callbackPixelFormatChanged() {
             LOGI("PIXEL_FORMAT_UYUY:");
             callbackPixelBytes = sz * 2;
             break;
+*/
         case PIXEL_FORMAT_YUV:
             LOGI("PIXEL_FORMAT_YUV:");
             callbackPixelBytes = sz * 2;
